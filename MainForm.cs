@@ -22,7 +22,8 @@ namespace AutoClicker
 
         InputSimulator mInputSimulator = new InputSimulator();
         bool mActive = false;
-        List<Color> mColorList = new List<Color>() { Color.Red, Color.Green, Color.Blue };
+        List<double> mClickTimeList = null;
+        List <Color> mColorList = new List<Color>() { Color.Red, Color.Green, Color.Blue };
         int mColorIndex = 0;
 
         public MainForm()
@@ -50,6 +51,7 @@ namespace AutoClicker
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            StopClicker();
             DestroyGlobalKeyboardHook();
 
             Properties.Settings.Default.Save();
@@ -68,7 +70,7 @@ namespace AutoClicker
         private void StartClicker()
         {
             double numOfSeconds = 0;
-            double numOfClicks = 0;
+            mClickTimeList = new List<double>();
 
             try
             {
@@ -79,12 +81,20 @@ namespace AutoClicker
                 while (mActive)
                 {
                     mInputSimulator.Mouse.LeftButtonClick();
-                    numOfClicks++;
-                    numOfSeconds = mStopwatch.ElapsedMilliseconds / 1000.0;
-                    mLabelSeconds.Text = $"{numOfSeconds:0.00} sec";
-                    double numClicksPerSecond = numOfClicks / numOfSeconds;
-                    mLabelNumOfClicks.Text = $"{numClicksPerSecond:0.00} click/second";
+                    mClickTimeList.Add(mStopwatch.ElapsedMilliseconds / 1000.0);
 
+                    if(mClickTimeList.Count() > 200)
+                    {
+                        mClickTimeList.RemoveAt(0);
+                    }
+
+                    if (mClickTimeList.Count > 1)
+                    {
+                        numOfSeconds = mClickTimeList.Last();
+                        mLabelSeconds.Text = $"{numOfSeconds:0.00} sec";
+                        double numClicksPerSecond = mClickTimeList.Count() / (mClickTimeList.Last() - mClickTimeList.First());
+                        mLabelNumOfClicks.Text = $"{numClicksPerSecond:0.00} click/second";
+                    }
                     Application.DoEvents();
                     Thread.Sleep(mDelayTime);
                 }
@@ -95,9 +105,18 @@ namespace AutoClicker
             {
                 DestroyGlobalKeyboardHook();
             }
+            finally
+            {
+                if(mClickTimeList != null)
+                {
+                    mClickTimeList.Clear();
+                    mClickTimeList = null;
+                }
+            }
 
             mLabelSeconds.Text = $"{numOfSeconds:0.00} sec";
             mLabelNumOfClicks.Text = "0.00 click/second";
+            Application.DoEvents();
         }
 
         private void StopClicker()
@@ -143,6 +162,10 @@ namespace AutoClicker
         private void mNUDTicksDelay_ValueChanged(object sender, EventArgs e)
         {
             mDelayTime = (int)mNUDTicksDelay.Value;
+            if (mClickTimeList != null)
+            {
+                mClickTimeList.Clear();
+            }
         }
     }
 }

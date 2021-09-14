@@ -35,12 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.mLabelNumOfClicks = new System.Windows.Forms.Label();
             this.mLabelSeconds = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mNUDTicksDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // mButtonTest
             // 
-            this.mButtonTest.Location = new System.Drawing.Point(91, 68);
+            this.mButtonTest.Location = new System.Drawing.Point(91, 99);
             this.mButtonTest.Margin = new System.Windows.Forms.Padding(1);
             this.mButtonTest.Name = "mButtonTest";
             this.mButtonTest.Size = new System.Drawing.Size(119, 29);
@@ -52,7 +53,7 @@
             // mPanelTest
             // 
             this.mPanelTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mPanelTest.Location = new System.Drawing.Point(10, 99);
+            this.mPanelTest.Location = new System.Drawing.Point(10, 130);
             this.mPanelTest.Margin = new System.Windows.Forms.Padding(1);
             this.mPanelTest.Name = "mPanelTest";
             this.mPanelTest.Size = new System.Drawing.Size(280, 53);
@@ -60,7 +61,7 @@
             // 
             // mButtonClose
             // 
-            this.mButtonClose.Location = new System.Drawing.Point(113, 156);
+            this.mButtonClose.Location = new System.Drawing.Point(113, 187);
             this.mButtonClose.Name = "mButtonClose";
             this.mButtonClose.Size = new System.Drawing.Size(75, 23);
             this.mButtonClose.TabIndex = 2;
@@ -71,7 +72,7 @@
             // mNUDTicksDelay
             // 
             this.mNUDTicksDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::AutoClicker.Properties.Settings.Default, "TicksDelayValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.mNUDTicksDelay.Location = new System.Drawing.Point(93, 12);
+            this.mNUDTicksDelay.Location = new System.Drawing.Point(93, 43);
             this.mNUDTicksDelay.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -86,7 +87,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(145, 14);
+            this.label1.Location = new System.Drawing.Point(145, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 4;
@@ -94,7 +95,7 @@
             // 
             // mLabelNumOfClicks
             // 
-            this.mLabelNumOfClicks.Location = new System.Drawing.Point(145, 39);
+            this.mLabelNumOfClicks.Location = new System.Drawing.Point(145, 70);
             this.mLabelNumOfClicks.Name = "mLabelNumOfClicks";
             this.mLabelNumOfClicks.Size = new System.Drawing.Size(145, 23);
             this.mLabelNumOfClicks.TabIndex = 5;
@@ -103,20 +104,30 @@
             // 
             // mLabelSeconds
             // 
-            this.mLabelSeconds.Location = new System.Drawing.Point(12, 39);
+            this.mLabelSeconds.Location = new System.Drawing.Point(12, 70);
             this.mLabelSeconds.Name = "mLabelSeconds";
             this.mLabelSeconds.Size = new System.Drawing.Size(127, 23);
             this.mLabelSeconds.TabIndex = 5;
             this.mLabelSeconds.Text = "0.00 sec";
             this.mLabelSeconds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(1, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(297, 24);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "F7 to toggle auto clicking";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 189);
+            this.ClientSize = new System.Drawing.Size(300, 224);
             this.Controls.Add(this.mLabelSeconds);
             this.Controls.Add(this.mLabelNumOfClicks);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mNUDTicksDelay);
             this.Controls.Add(this.mButtonClose);
@@ -144,6 +155,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label mLabelNumOfClicks;
         private System.Windows.Forms.Label mLabelSeconds;
+        private System.Windows.Forms.Label label2;
     }
 }
 

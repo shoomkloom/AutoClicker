@@ -91,7 +91,7 @@ namespace AutoClicker
 
                 mStopwatch.Stop();
             }
-            finally
+            catch
             {
                 DestroyGlobalKeyboardHook();
             }

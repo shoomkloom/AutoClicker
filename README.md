@@ -6,4 +6,4 @@ The UI:
 - You can test it by hovering over the 'Test' button: the colors should rotate in the panel below.
 - Closing the application should cancel the KB hook.
 
-# Use at your own risk!
+**Use at your own risk!**
